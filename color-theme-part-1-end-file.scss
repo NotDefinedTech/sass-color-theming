@@ -1,0 +1,37 @@
+/* Final code from live stream: https://youtube.com/live/C9M_3eLwYTM */
+
+@use "sass:map";
+
+$themes: (
+    light: #fff,
+    dark: #121212,
+    accent: blue,
+);
+
+@mixin section-color-theme($theme: light) {
+    @if $theme == light {
+        color: map.get($themes, dark);
+        background-color: map.get($themes, $theme);
+    }
+    @if $theme == dark {
+        color: map.get($themes, light);
+        background-color: map.get($themes, $theme);
+    }
+    @if $theme == accent {
+        color: map.get($themes, dark);
+        background-color: #ccc;
+        h1, h2 {
+            color: map.get($themes, accent);
+        }
+    }
+}
+
+section.light {
+    @include section-color-theme(light);
+}
+section.dark {
+    @include section-color-theme(dark);
+}
+section.accent {
+    @include section-color-theme(accent);
+}
